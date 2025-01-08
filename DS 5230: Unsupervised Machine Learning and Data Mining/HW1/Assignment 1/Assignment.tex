@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\title{CS6220/DS5230 Unsupervised Data Mining\\HW1: Data Features, Similarity, KNN}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{General Instructions}
+\begin{itemize}
+    \item \textbf{Due Date}: Refer to the syllabus for the due date.
+    \item \textbf{Notations}: Use the notations adopted in class, even if the problem is stated differently in the book.
+    \item \textbf{Response Length}: Keep answers concise. Aim for one or two pages of typed text per problem.
+    \item \textbf{Focus}: Emphasize good ideas and explanations over exact details.
+\end{itemize}
+
+\section*{Datasets}
+\begin{enumerate}
+    \item \textbf{Kosarak}: Click-stream data of a Hungarian online news portal\\
+    \url{http://fimi.uantwerpen.be/data/kosarak.dat}
+    \item \textbf{Aminer}: Public citation dataset\\
+    \url{https://lfs.aminer.cn/lab-datasets/citation/acm.v9.zip}
+    \item \textbf{20 NewsGroups}: News articles\\
+    \url{http://qwone.com/~jason/20Newsgroups/}
+    \item \textbf{MNIST}: Digit images\\
+    \url{http://yann.lecun.com/exdb/mnist/}
+\end{enumerate}
+
+\section*{Problem 1: Aminer -- Basic Dataset Analysis}
+\subsection*{Tasks}
+\begin{enumerate}
+    \item[A.] Compute the number of distinct authors, publication venues, publications, and citations/references.
+    \item[B.] Evaluate the accuracy of these numbers. Analyze the publication venue names associated with \textit{Principles and Practice of Knowledge Discovery in Databases} and discuss your observations.
+    \item[C.] For each author, construct the list of publications. Plot a histogram of the number of publications per author (logarithmic scale on the y-axis).
+    \item[D.] Calculate the mean, standard deviation, Q1 (1st quartile), Q2 (median), and Q3 (3rd quartile) for the number of publications per author. Compare the median to the mean and explain differences.
+    \item[E.] Plot a histogram of the number of publications per venue and calculate the mean, standard deviation, median, Q1, and Q3. Identify the venue with the most publications.
+    \item[F.] Plot histograms for the number of references (publications cited by a publication) and citations (publications citing a publication). Identify the publication with the most references and citations and evaluate the results.
+    \item[G.] Calculate the "impact factor" for each venue as the total citations divided by the number of publications. Plot a histogram of impact factors.
+    \item[H.] Identify the venue with the highest impact factor. Assess whether this value is reasonable.
+    \item[I.] Repeat the impact factor calculation for venues with at least 10 publications. Compare histograms and analyze citation distributions for the venue with the highest impact factor.
+    \item[J.] Construct a list of publications by year. Plot the average number of references and citations per publication over time. Discuss observed trends.
+\end{enumerate}
+
+\section*{Problem 2: Kosarak Association Rules}
+\subsection*{Tasks}
+\begin{enumerate}
+    \item[A.] Write a Python program to convert the dataset from itemset format to a sparse ARFF file.
+    \item[B.] Use your program to convert the \texttt{kosarak.dat} file to a sparse \texttt{kosarak.arff}. Measure and report the runtime.
+    \item[C.] Load the resulting file into Weka. Ensure it has 41,270 attributes and 990,002 instances. Measure and report the runtime.
+    \item[D.] Use Weka's FP-Growth implementation to find association rules with a minimum support count of 49,500 and confidence of at least 99\%. Record the resulting two rules.
+    \item[E.] Run the algorithm five times, record runtimes, and calculate the average. Compare the runtime to the dataset conversion and loading times.
+\end{enumerate}
+
+\section*{Problem 3: MNIST and 20NG Preprocessing}
+\subsection*{Tasks}
+\textbf{Parsing:} Write or use a library to parse the datasets.
+
+\textbf{Normalization:}
+\begin{itemize}
+    \item Determine and apply appropriate normalization for each dataset.
+    \item Common methods: Shift-and-scale, zero mean/unit variance, term frequency (TF) weighting.
+    \item Retain sparsity for text datasets.
+\end{itemize}
+
+\textbf{Pairwise Similarities:}
+\begin{itemize}
+    \item Compute pairwise similarity or distance matrices for:
+    \begin{itemize}
+        \item Euclidean distance (library and custom implementation).
+        \item Edit distance (for text) or cosine similarity (for vectors).
+        \item Optional: Jaccard similarity, Manhattan distance.
+    \end{itemize}
+\end{itemize}
+
+\section*{Problem 4: MNIST and 20NG -- Train and Test KNN Classification}
+\subsection*{Tasks}
+\begin{enumerate}
+    \item Implement a custom K-nearest neighbor (KNN) classifier.
+    \item Partition datasets into 80\% training, 10\% testing, and 10\% validation.
+    \item Train and test the KNN classifier for both datasets:
+    \begin{itemize}
+        \item Report training and testing performance.
+        \item Optionally implement a scikit-learn compatible estimator class supporting \texttt{.fit()}, \texttt{.predict()}, and \texttt{.transform()} methods.
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Resources:}
+\begin{itemize}
+    \item \url{https://scikit-learn.org/stable/developers/develop.html}
+    \item \url{https://en.wikipedia.org/wiki/Category:Similarity_and_distance_measures}
+\end{itemize}
+
+\end{document}
