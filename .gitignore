@@ -1,2 +1,2 @@
-**/Data Sets/ #To ignore all subfolders named Data Sets in your directory, you can use the following rule in your .gitignore file
+**/Data Sets/
 /.idea
